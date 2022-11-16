@@ -1,6 +1,6 @@
 const database = require('./server/choral diversity database');
 const pg = require('pg');
-const convertTime = require('./server/modules/convertTime')
+const convertTime = require('./server/public/modules/convertTime')
 
 const pool = new pg.Pool({
     database: 'choral_diversity_db', // name of db; this can change!
