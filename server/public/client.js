@@ -15,6 +15,9 @@ function setupClicks() {
 }
 
 function searchDatabase() {
+    $('#all-content').removeClass('search-blank');
+    $('#all-content').addClass('search-active');
+
     const searchTerm = $('#main-search').val();
     console.log('search created with search term ', searchTerm);
 
@@ -56,9 +59,15 @@ function renderDisplay(arr) {
     $('#search-display').empty();
     for (let result of arr) {
         $('#search-display').append(`
-            <div class="search-result">
-                ${result.title}
+            <div class="card piece-card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">${result.title}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">${result.composer}</h6>
+                        <p class="card-text">composed: ${result.date}. length: ${secondsToMinutes(result.duration)}</p>
+                        <a href="${result.link_to_piece}" class="card-link">Link to piece</a>
+                        <a href="${result.url}" class="card-link">Link to composer</a>
+                    </div>
             </div>
-    `)
+        `)
     }
 }

@@ -13,32 +13,34 @@
         crossorigin="anonymous"></script>
     <script src="jquery-3.6.1.js"></script>
     <script src="modules/convertTime.js"></script>
+    <script src="modules/secondsToMinutes.js"></script>
     <script src="modules/parseSearch.js"></script>
     <script src="client.js"></script>
     <title>Document</title>
 </head>
 
 <body>
+    <main id="all-content" class="search-blank">
+        <h1>Choral Diversity Database search</h1>
 
-    <h1>Choral Diversity Database search</h1>
+        <section id="search-input">
 
-    <section id="search-input">
+            <!-- current functionality:
+            <ul>
+                <li>blank title search</li>
+                <li>by composer (c:[name])</li>
+                <li>by date (d:[start-end] / d>[start] / d&lt;[end]) </li>
+                <li>by duration (l:[min-max] / l>[min] / l&lt;[max])</li>
+            </ul> -->
 
-        current functionality:
-        <ul>
-            <li>blank title search</li>
-            <li>by composer (c:[name])</li>
-            <li>by date (d:[start-end] / d>[start] / d&lt;[end]) </li>
-            <li>by duration (l:[min-max] / l>[min] / l&lt;[max])</li>
-        </ul>
-
-        <input type="text" id="main-search">
-    </section>
-    <section id="search-display">
+            <input type="text" id="main-search" placeholder="search">
+            <button class="btn btn-primary" id="syntax-btn">syntax</button>
+        </section>
+        <section id="search-display">
 
 
-    </section>
-
+        </section>
+    </main>
 </body>
 
 </html>

@@ -60,7 +60,7 @@ function createQuery(queryObject) {
     for (let key in queryObjectMax) {
         if (queryObjectMax[key]) {
             queryArray.push(`
-                ${key} > ${queryObjectMax[key]}    
+                ${key} < ${queryObjectMax[key]}    
             `)
         }
     }

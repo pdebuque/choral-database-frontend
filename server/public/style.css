@@ -1,8 +1,25 @@
-body {
+.search-blank {
     text-align: center;
     padding-top: 200px;
 }
 
+.search-active {
+    padding-top: 30px;
+    text-align: center;
+}
+
 li {
     list-style: none;
+}
+
+#search-display {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 20px auto;
+    justify-content: space-around;
+}
+
+.piece-card {
+    margin: 10px;
 }

@@ -39,10 +39,12 @@ function parseSearch(queryTerm) {
         parsedSearch.title = queryTerm;
         return parsedSearch;
     } else {
-        const paramsArr = queryTerm.split(' ') // each element of the array is a parameter
+        const paramsArr = queryTerm.split(' ')
+        const titleSearch = [];// each element of the array is a parameter
         for (let param of paramsArr) { // this only works if users are limited to one plain string with no spaces. e.g., "ave maria c:hailstork" will not work
+
             if (!isComplex(param)) {
-                parsedSearch.title = param;
+                titleSearch.push(param);
             } else if (param.includes(':')) {
                 const splitParam = param.split(':')
                 if (splitParam[1].includes('-')) {
@@ -60,6 +62,7 @@ function parseSearch(queryTerm) {
                 parsedSearch[`${splitParam[0]}min`] = splitParam[1];
             }
         }
+        parsedSearch.title = titleSearch.join(' ')
         return parsedSearch;
     }
 }
