@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const database = require('../choral diversity database')
 const pool = require('../modules/pool')
-
+const createQuery = require('../modules/createQuery')
 // -------------------- GET ------------------------
+
 
 router.get('/', (req, res) => {
     console.log('search received', req.query);
@@ -23,7 +24,8 @@ router.get('/', (req, res) => {
         diff: req.query.diff || null
     }
 
-    console.log('clean query: ', cleanQuery)
+    const queryString = createQuery(cleanQuery);
+    console.log(queryString)
     // const queryText = `SELECT * FROM pieces
     //                     WHERE 
     //                         composer ILIKE coalesce($1, '%') AND
@@ -36,15 +38,15 @@ router.get('/', (req, res) => {
 
     // (${cleanQuery.c} IS NULL OR composer ILIKE ['%' + ${cleanQuery.c} + '%']) AND
 
-    const queryText = `SELECT * FROM pieces WHERE 
-        (title ILIKE '%' || '${cleanQuery.title}' || '%' OR '${cleanQuery.title}' is null);
-        `
+    // const queryText = `SELECT * FROM pieces WHERE 
+    //     (title ILIKE '%' || '${cleanQuery.title}' || '%' OR '${cleanQuery.title}' is null);
+    //     `
 
     // const queryParams = [`%${req.query.c}%`, `%${cleanQuery.title}%`, cleanQuery.dmin, cleanQuery.dmax, cleanQuery.lmin, cleanQuery.lmax, `%${cleanQuery.v}%`, `%${cleanQuery.acc}%`, cleanQuery.diffmin, cleanQuery.diffmax, cleanQuery.diff]
 
     // const queryParams
 
-    pool.query(queryText)
+    pool.query(queryString)
         .then(result => {
             console.log('search result: ', result.rows.length)
             res.send(result.rows)
